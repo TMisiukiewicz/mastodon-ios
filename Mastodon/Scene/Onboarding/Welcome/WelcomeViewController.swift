@@ -281,8 +281,8 @@ extension WelcomeViewController {
                 
         let viewController = UIViewController()
         viewController.view = rootView
-            
-        self.present(viewController, animated: true, completion: nil);
+
+        self.navigationController?.pushViewController(viewController, animated: true);
     }
 
     @objc
