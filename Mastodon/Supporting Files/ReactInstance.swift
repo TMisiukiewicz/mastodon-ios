@@ -115,7 +115,7 @@ final class ReactInstance: NSObject, RNXHostConfig {
     }
 }
 
-func createReactRootView(_ reactInstance: ReactInstance, componentName: String, initialProperties: [AnyHashable: Any]?) -> (UIView, String)? {
+func createReactRootView(_ reactInstance: ReactInstance, componentName: String, initialProperties: [AnyHashable: Any]?) -> UIView? {
     reactInstance.initReact(bundleRoot: "index") {}
     guard let host = reactInstance.host else {
         assertionFailure("Failed to initialize ReactNativeHost")
@@ -126,5 +126,5 @@ func createReactRootView(_ reactInstance: ReactInstance, componentName: String, 
         moduleName: componentName,
         initialProperties: initialProperties
     )
-    return (view, componentName)
+    return view
 }

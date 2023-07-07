@@ -276,7 +276,7 @@ extension WelcomeViewController {
     //MARK: - Actions
     @objc
     private func joinDefaultServer(_ sender: UIButton) {
-        let (rootView, _) = createReactRootView(reactInstance, componentName: "ReactNativeScreen", initialProperties: nil)!
+        let rootView = createReactRootView(reactInstance, componentName: "ReactNativeScreen", initialProperties: nil)!
                 
         let viewController = UIViewController()
         viewController.view = rootView
