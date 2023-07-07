@@ -11,6 +11,7 @@ import MastodonAsset
 import MastodonCore
 import MastodonLocalization
 import MastodonSDK
+import React
 
 final class WelcomeViewController: UIViewController, NeedsDependency {
     
@@ -275,109 +276,13 @@ extension WelcomeViewController {
     //MARK: - Actions
     @objc
     private func joinDefaultServer(_ sender: UIButton) {
-
-        guard let server = viewModel.randomDefaultServer else { return }
-        sender.configuration?.title = nil
-        sender.isEnabled = false
-        sender.configuration?.showsActivityIndicator = true
-
-        authenticationViewModel.isAuthenticating.send(true)
-
-        context.apiService.instance(domain: server.domain)
-            .compactMap { [weak self] response -> AnyPublisher<MastodonPickServerViewModel.SignUpResponseFirst, Error>? in
-                guard let self = self else { return nil }
-                guard response.value.registrations != false else {
-                    return Fail(error: AuthenticationViewModel.AuthenticationError.registrationClosed).eraseToAnyPublisher()
-                }
-                return self.context.apiService.createApplication(domain: server.domain)
-                    .map { MastodonPickServerViewModel.SignUpResponseFirst(instance: response, application: $0) }
-                    .eraseToAnyPublisher()
-            }
-            .switchToLatest()
-            .tryMap { response -> MastodonPickServerViewModel.SignUpResponseSecond in
-                let application = response.application.value
-                guard let authenticateInfo = AuthenticationViewModel.AuthenticateInfo(
-                        domain: server.domain,
-                        application: application
-                ) else {
-                    throw APIService.APIError.explicit(.badResponse)
-                }
-                return MastodonPickServerViewModel.SignUpResponseSecond(
-                    instance: response.instance,
-                    authenticateInfo: authenticateInfo
-                )
-            }
-            .compactMap { [weak self] response -> AnyPublisher<MastodonPickServerViewModel.SignUpResponseThird, Error>? in
-                guard let self = self else { return nil }
-                let instance = response.instance
-                let authenticateInfo = response.authenticateInfo
-                return self.context.apiService.applicationAccessToken(
-                    domain: server.domain,
-                    clientID: authenticateInfo.clientID,
-                    clientSecret: authenticateInfo.clientSecret,
-                    redirectURI: authenticateInfo.redirectURI
-                )
-                .map {
-                    MastodonPickServerViewModel.SignUpResponseThird(
-                        instance: instance,
-                        authenticateInfo: authenticateInfo,
-                        applicationToken: $0
-                    )
-                }
-                .eraseToAnyPublisher()
-            }
-            .switchToLatest()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] completion in
-                guard let self = self else { return }
-                self.authenticationViewModel.isAuthenticating.send(false)
-
-                switch completion {
-                case .failure(let error ):
-                    guard let randomServer = self.viewModel.pickRandomDefaultServer() else { return }
-
-                    self.viewModel.randomDefaultServer = randomServer
-
-                    sender.isEnabled = true
-                    sender.configuration?.showsActivityIndicator = false
-                    sender.configuration?.attributedTitle = AttributedString(
-                        L10n.Scene.Welcome.joinDefaultServer(randomServer.domain),
-                        attributes: .init([.font: UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))])
-                    )
-                case .finished:
-                    sender.isEnabled = true
-                    sender.configuration?.showsActivityIndicator = false
-                    sender.configuration?.attributedTitle = AttributedString(
-                        L10n.Scene.Welcome.joinDefaultServer(server.domain),
-                        attributes: .init([.font: UIFontMetrics(forTextStyle: .headline).scaledFont(for: .systemFont(ofSize: 17, weight: .semibold))])
-                    )
-                }
-
-            } receiveValue: { [weak self] response in
-                guard let self = self else { return }
-                if let rules = response.instance.value.rules, !rules.isEmpty {
-                    // show server rules before register
-                    let mastodonServerRulesViewModel = MastodonServerRulesViewModel(
-                        domain: server.domain,
-                        authenticateInfo: response.authenticateInfo,
-                        rules: rules,
-                        instance: response.instance.value,
-                        applicationToken: response.applicationToken.value
-                    )
-                    _ = self.coordinator.present(scene: .mastodonServerRules(viewModel: mastodonServerRulesViewModel), from: self, transition: .show)
-                } else {
-                    let mastodonRegisterViewModel = MastodonRegisterViewModel(
-                        context: self.context,
-                        domain: server.domain,
-                        authenticateInfo: response.authenticateInfo,
-                        instance: response.instance.value,
-                        applicationToken: response.applicationToken.value
-                    )
-                    _ = self.coordinator.present(scene: .mastodonRegister(viewModel: mastodonRegisterViewModel), from: nil, transition: .show)
-                }
-            }
-            .store(in: &disposeBag)
-
+        let jsLocation = URL(string: "http://localhost:8081/index.bundle?platform=ios")
+        let rootView = RCTRootView(bundleURL: jsLocation!, moduleName: "ReactNativeScreen", initialProperties: nil, launchOptions: nil)
+                
+        let viewController = UIViewController()
+        viewController.view = rootView
+            
+        self.present(viewController, animated: true, completion: nil);
     }
 
     @objc
