@@ -3239,7 +3239,7 @@
 			);
 			mainGroup = DB427DC925BAA00100D1B89D;
 			packageReferences = (
-				2AB501192992322500346092 /* XCRemoteSwiftPackageReference "LightChart" */,
+				2AB501192992322500346092 /* XCRemoteSwiftPackageReference "LightChart.git" */,
 			);
 			productRefGroup = DB427DD325BAA00100D1B89D /* Products */;
 			projectDirPath = "";
@@ -5371,7 +5371,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2AB501192992322500346092 /* XCRemoteSwiftPackageReference "LightChart" */ = {
+		2AB501192992322500346092 /* XCRemoteSwiftPackageReference "LightChart.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Bearologics/LightChart.git";
 			requirement = {
@@ -5392,7 +5392,7 @@
 		};
 		2AB5011A2992322500346092 /* LightChart */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2AB501192992322500346092 /* XCRemoteSwiftPackageReference "LightChart" */;
+			package = 2AB501192992322500346092 /* XCRemoteSwiftPackageReference "LightChart.git" */;
 			productName = LightChart;
 		};
 		357FEEAE29523D470021C9DC /* MastodonSDKDynamic */ = {
