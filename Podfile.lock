@@ -352,6 +352,10 @@ PODS:
     - React-jsi (= 0.71.11)
     - React-logger (= 0.71.11)
     - React-perflogger (= 0.71.11)
+  - ReactNativeHost (0.2.7):
+    - React-Core
+    - React-cxxreact
+    - ReactCommon/turbomodule/core
   - Sourcery (1.9.2):
     - Sourcery/CLI-Only (= 1.9.2)
   - Sourcery/CLI-Only (1.9.2)
@@ -397,6 +401,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "ReactNativeHost (from `../node_modules/@rnx-kit/react-native-host`)"
   - Sourcery (~> 1.9)
   - SwiftGen (~> 6.6.2)
   - XLPagerTabStrip (~> 9.0.0)
@@ -479,6 +484,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeHost:
+    :path: "../node_modules/@rnx-kit/react-native-host"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -520,6 +527,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: f09f08de63e4122deb32506e20ca4cae6e4e14c1
   React-runtimeexecutor: 4817d63dbc9d658f8dc0ec56bd9b83ce531129f0
   ReactCommon: 864169d79e7fb2e846ad1257a2afd7ed846d6375
+  ReactNativeHost: 5dd0021c01ade845f1171f4e6f6814f214ddfadb
   Sourcery: 179539341c2261068528cd15a31837b7238fd901
   SwiftGen: 1366a7f71aeef49954ca5a63ba4bef6b0f24138c
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
