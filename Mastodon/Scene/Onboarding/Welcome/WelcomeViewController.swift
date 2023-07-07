@@ -11,9 +11,10 @@ import MastodonAsset
 import MastodonCore
 import MastodonLocalization
 import MastodonSDK
-import React
 
 final class WelcomeViewController: UIViewController, NeedsDependency {
+    
+    private lazy var reactInstance = ReactInstance()
     
     private enum Constants {
         static let topAnchorInset: CGFloat = 20
@@ -272,12 +273,10 @@ extension WelcomeViewController {
 }
 
 extension WelcomeViewController {
-
     //MARK: - Actions
     @objc
     private func joinDefaultServer(_ sender: UIButton) {
-        let jsLocation = URL(string: "http://localhost:8081/index.bundle?platform=ios")
-        let rootView = RCTRootView(bundleURL: jsLocation!, moduleName: "ReactNativeScreen", initialProperties: nil, launchOptions: nil)
+        let (rootView, _) = createReactRootView(reactInstance, componentName: "ReactNativeScreen", initialProperties: nil)!
                 
         let viewController = UIViewController()
         viewController.view = rootView
