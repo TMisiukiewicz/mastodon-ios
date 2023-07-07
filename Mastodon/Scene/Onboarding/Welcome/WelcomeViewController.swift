@@ -276,7 +276,7 @@ extension WelcomeViewController {
     //MARK: - Actions
     @objc
     private func joinDefaultServer(_ sender: UIButton) {
-        let jsLocation = URL(string: "http://localhost:8081/index.bundle?platform=ios")
+        let jsLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index") { nil }
         let rootView = RCTRootView(bundleURL: jsLocation!, moduleName: "ReactNativeScreen", initialProperties: nil, launchOptions: nil)
                 
         let viewController = UIViewController()
