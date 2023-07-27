@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         AppSecret.default.register()
+        
+        ReactBridgeManager.shared.loadReactNative(launchOptions: launchOptions)
 
         // configure appearance
         ThemeService.shared.apply(theme: ThemeService.shared.currentTheme.value)
