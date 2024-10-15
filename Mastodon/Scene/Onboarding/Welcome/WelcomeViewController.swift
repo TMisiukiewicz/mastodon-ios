@@ -12,15 +12,16 @@ import MastodonCore
 import MastodonLocalization
 import MastodonSDK
 import React
+import React_RCTAppDelegate
 
 final class WelcomeViewController: UIViewController, NeedsDependency {
-    
     private enum Constants {
         static let topAnchorInset: CGFloat = 20
     }
     
     weak var context: AppContext! { willSet { precondition(!isViewLoaded) } }
     weak var coordinator: SceneCoordinator! { willSet { precondition(!isViewLoaded) } }
+    var reactNativeView: ReactNativeView?
 
     private(set) lazy var authenticationViewModel = AuthenticationViewModel(
         context: context,
@@ -276,13 +277,9 @@ extension WelcomeViewController {
     //MARK: - Actions
     @objc
     private func joinDefaultServer(_ sender: UIButton) {
-        let jsLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index") { nil }
-        let rootView = RCTRootView(bundleURL: jsLocation!, moduleName: "ReactNativeScreen", initialProperties: nil, launchOptions: nil)
-                
-        let viewController = UIViewController()
-        viewController.view = rootView
+        let reactNativeView = ReactNativeView()
 
-        self.navigationController?.pushViewController(viewController, animated: true);
+        self.navigationController?.pushViewController(reactNativeView, animated: true);
     }
 
     @objc

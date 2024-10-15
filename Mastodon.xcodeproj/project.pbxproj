@@ -131,6 +131,7 @@
 		85BC11B32932414900E191CD /* AltTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BC11B22932414900E191CD /* AltTextViewController.swift */; };
 		87FFDA5D898A5C42ADCB35E7 /* Pods_Mastodon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4ABE34829701A4496C5BB64 /* Pods_Mastodon.framework */; };
 		8BF4A08F3AFF87E58E30C42D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 984004D24A2D936E15446302 /* PrivacyInfo.xcprivacy */; };
+		98EB91D82CBE4D6400DE33B3 /* ReactNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EB91D72CBE4D6400DE33B3 /* ReactNativeView.swift */; };
 		9E44C7202967AD17004B2A72 /* MastodonSDKDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 9E44C71F2967AD17004B2A72 /* MastodonSDKDynamic */; };
 		9E44C7222967AD17004B2A72 /* MastodonSDKDynamic in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 9E44C71F2967AD17004B2A72 /* MastodonSDKDynamic */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		C24C97032922F30500BAE8CB /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24C97022922F30500BAE8CB /* RefreshControl.swift */; };
@@ -758,7 +759,8 @@
 		8E79CCBE51FBC3F7FE8CF49F /* Pods-MastodonTests.release snapshot.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MastodonTests.release snapshot.xcconfig"; path = "Target Support Files/Pods-MastodonTests/Pods-MastodonTests.release snapshot.xcconfig"; sourceTree = "<group>"; };
 		8ED8C4B1F1BA2DCFF2926BB1 /* Pods-Mastodon-NotificationService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mastodon-NotificationService.debug.xcconfig"; path = "Target Support Files/Pods-Mastodon-NotificationService/Pods-Mastodon-NotificationService.debug.xcconfig"; sourceTree = "<group>"; };
 		9780A4C98FFC65B32B50D1C0 /* Pods-MastodonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MastodonTests.release.xcconfig"; path = "Target Support Files/Pods-MastodonTests/Pods-MastodonTests.release.xcconfig"; sourceTree = "<group>"; };
-		984004D24A2D936E15446302 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = ../PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		984004D24A2D936E15446302 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = ../PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		98EB91D72CBE4D6400DE33B3 /* ReactNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactNativeView.swift; sourceTree = "<group>"; };
 		9A0982D8F349244EB558CDFD /* Pods-AppShared.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppShared.debug.xcconfig"; path = "Target Support Files/Pods-AppShared/Pods-AppShared.debug.xcconfig"; sourceTree = "<group>"; };
 		9CFF58FD900AC059428700E7 /* Pods-NotificationService.asdk - release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationService.asdk - release.xcconfig"; path = "Target Support Files/Pods-NotificationService/Pods-NotificationService.asdk - release.xcconfig"; sourceTree = "<group>"; };
 		A4ABE34829701A4496C5BB64 /* Pods_Mastodon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mastodon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1946,6 +1948,7 @@
 				DB427DDB25BAA00100D1B89D /* Main.storyboard */,
 				DB427DE025BAA00100D1B89D /* LaunchScreen.storyboard */,
 				DB68A05C25E9055900CFDF14 /* Settings.bundle */,
+				98EB91D72CBE4D6400DE33B3 /* ReactNativeView.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -3784,6 +3787,7 @@
 				DBF156E42702DB3F00EC00B7 /* HandleTapAction.swift in Sources */,
 				DB98EB4727B0DFAA0082E365 /* ReportStatusViewModel+State.swift in Sources */,
 				2D5981A125E4A593000FB903 /* MastodonConfirmEmailViewModel.swift in Sources */,
+				98EB91D82CBE4D6400DE33B3 /* ReactNativeView.swift in Sources */,
 				DB6B74F6272FBCDB00C70B6E /* FollowerListViewModel+State.swift in Sources */,
 				DB87D4452609BE0500D12C0D /* ComposeStatusPollOptionCollectionViewCell.swift in Sources */,
 				DBDFF197280556D900557A48 /* DiscoveryPostsViewModel+State.swift in Sources */,
