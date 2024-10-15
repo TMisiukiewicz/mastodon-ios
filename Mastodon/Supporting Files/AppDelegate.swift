@@ -11,14 +11,15 @@ import UserNotifications
 import AVFoundation
 import MastodonCore
 import MastodonUI
+import React
+import React_RCTAppDelegate
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: RCTAppDelegate {
 
     let appContext = AppContext()
-    var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         AppSecret.default.register()
 
@@ -41,31 +42,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         count += 1      // Int64. could ignore overflow here
         UserDefaults.shared.processCompletedCount = count
         
-        return true
+        self.automaticallyLoadReactNativeWindow = false;
+        
+        return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
     // MARK: UISceneSession Lifecycle
+    
+    override func sourceURL(for bridge: RCTBridge) -> URL? {
+    self.bundleURL()
+  }
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+  override func bundleURL() -> URL? {
+    #if DEBUG
+        RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+    #else
+        Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+    #endif
+      }
+
+    override func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+    override func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    override func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return true
     }
 
 }
 
 extension AppDelegate {
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         appContext.notificationService.deviceToken.value = deviceToken
     }
 }
@@ -98,7 +113,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     
     // notification present in the background (or resume from background)
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+    override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
         let shortcutItems = try? await appContext.notificationService.unreadApplicationShortcutItems()
         UIApplication.shared.shortcutItems = shortcutItems
         return .noData
