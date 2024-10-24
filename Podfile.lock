@@ -5,9 +5,9 @@ PODS:
   - FLEX (5.22.10)
   - fmt (9.1.0)
   - glog (0.3.5)
-  - hermes-engine (0.76.0-rc.2):
-    - hermes-engine/Pre-built (= 0.76.0-rc.2)
-  - hermes-engine/Pre-built (0.76.0-rc.2)
+  - hermes-engine (0.76.0):
+    - hermes-engine/Pre-built (= 0.76.0)
+  - hermes-engine/Pre-built (0.76.0)
   - Kanna (5.2.7)
   - RCT-Folly (2024.01.01.00):
     - boost
@@ -1736,7 +1736,7 @@ SPEC CHECKSUMS:
   FLEX: f21ee4f498eed3f8a1eded66b21939fd3b7a22ce
   fmt: 10c6e61f4be25dc963c36bd73fc7b1705fe975be
   glog: 08b301085f15bcbb6ff8632a8ebaf239aae04e6a
-  hermes-engine: 509b09994fc41f09d6eab217ec9bfd671d94fbb2
+  hermes-engine: 9de51d2f67336348a6cd5b686330e436d1dbd522
   Kanna: 01cfbddc127f5ff0963692f285fcbc8a9d62d234
   RCT-Folly: bf5c0376ffe4dd2cf438dcf86db385df9fdce648
   RCTDeprecation: 4c2c4a088b6f0ccfcbd53c9d5614b0238ad57909
